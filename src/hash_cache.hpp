@@ -42,9 +42,9 @@ private:
         unsigned char md5_digests[MD5_DIGEST_LENGTH];
         char md5_string[MD5_DIGEST_LENGTH * 2];
 
-        if(MD5_Init(&md5_context) != 1) std::runtime_error("md5_init");
-        if(MD5_Update(&md5_context, data, size) != 1) std::runtime_error("md5_update");
-        if(MD5_Final(md5_digests, &md5_context) != 1) std::runtime_error("md5_final");
+        if(MD5_Init(&md5_context) != 1) throw std::runtime_error("md5_init");
+        if(MD5_Update(&md5_context, data, size) != 1) throw std::runtime_error("md5_update");
+        if(MD5_Final(md5_digests, &md5_context) != 1) throw std::runtime_error("md5_final");
 
         for(int i = 0; i < MD5_DIGEST_LENGTH; i++)
             sprintf(&md5_string[i * 2], "%02x", md5_digests[i]);
